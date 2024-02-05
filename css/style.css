@@ -1,23 +1,68 @@
-/*Design de*/
-
-a {
-    color: inherit;
+body {
+    background-image: url(../img/BG.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* max-height: 100vh; */
+    font-family: 'Press Start 2P', system-ui;
+    cursor: url(../img/tiny_hammer.png) 15 15, auto;
 }
 
-h1, h2, h3, h4 {
-    font-family: 'Montserrat Subrayada', sans-serif;
-}
-
-p {
-    font-family: 'Josefin Slab', serif;
-    font-size: 40px;
-}
-
-.container {
-    width: auto;
-    height: 250px;
-    background-color: rebeccapurple;
-    padding: 40px;
+.navbar {
+    background-color: #e4e4e4;
+    border: 4px solid black;
+    height: 70px;
+    width: 100%;
     display: flex;
-    margin: 40px;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+.navbar ul {
+    display: flex;
+    flex-flow: row;
+    list-style: none;
+}
+
+.navbar li {
+    padding: 0 20px;
+}
+
+.startgame {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+}
+
+.startgame input {
+    padding: 20px;
+    font-size: 18px;
+    font-family: 'Press Start 2P', system-ui;
+    text-align: center;
+}
+.startgame button {
+    padding: 20px;
+    margin: 30px;
+    font-family: 'Press Start 2P', system-ui;
+    font-size: 18px;
+}
+
+.champTaupiqueur {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 800px;
+}
+
+.taupiqueur {
+    width: 30%;
 }
