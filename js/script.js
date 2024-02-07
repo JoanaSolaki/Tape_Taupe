@@ -33,21 +33,44 @@ const taupiqueurs = document.getElementsByClassName('taupiqueur')
 document.getElementById('facile').addEventListener("click", game)
 document.getElementById('moyen').addEventListener("click", game)
 document.getElementById('difficile').addEventListener("click", game)
-let time = 5000
+let time = 8000
 
 function game() {
     boiteLevel.style.display="none"
     const random = Math.floor(Math.random() * 9)
-    console.log(random);
 
     taupiqueurs[random];
     taupiqueurs[random].style.display = 'block';
 
+    let noCheat = false
+    taupiqueurs[random].addEventListener("click", () => {
+        if(!noCheat){
+            currentScore.score++
+            document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
+            console.log(currentScore.score);
+            noCheat = true
+        }
+    });
+
     if (time > 0) {
     setTimeout(() => {
         taupiqueurs[random].style.display = 'none';
-        setTimeout(game, 1000); // Montre à nouveau après 1 seconde
-        time = time-1000
-        }, 1000); // Cache après 1 seconde
+        setTimeout(game, 2000); // Montre à nouveau après 1 seconde & Reboucle
+        time = time-2000
+        }, 2000); // Cache après 1 seconde
+    }
+    if (time == 0) {
+        scoreCurrent()
+    }
 }
+
+function scoreCurrent() {
+    boiteTexte.style.display='block';
+    boiteTexte.innerHTML='<p>Bravo ' + currentScore.playername + ' ! <br> Ton score est de : ' + currentScore.score + '</p> <img src="img/taupiqueur_score.png" alt="Taupiqueur">'
+    localStorage.setItem("Nom du joueur", currentScore.playername)
+    localStorage.setItem("Score", currentScore.score)
+    let leaderBoardName = localStorage.getItem("Nom du joueur")
+    let leaderBoardScore = localStorage.getItem("Score")
+    console.log(leaderBoardName, leaderBoardScore);
 }
+
