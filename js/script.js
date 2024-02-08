@@ -47,16 +47,19 @@ function gameFacile() {
 
     let noCheat = false
     taupiqueurs[random].addEventListener("click", () => {
+        document.getElementsByTagName('body')[0].classList.add('bonk')
         if(!noCheat){
             currentScore.score++
             document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
             noCheat = true
         }
+        
     });
 
     if (time > 0) {
     setTimeout(() => {
         taupiqueurs[random].style.display = 'none';
+        document.getElementsByTagName('body')[0].classList.remove('bonk')
         setTimeout(gameFacile, 1000); // Montre à nouveau après 1 seconde & Reboucle
         time = time-1000
         }, 1000); // Cache après 1 seconde

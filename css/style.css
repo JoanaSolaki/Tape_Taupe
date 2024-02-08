@@ -8,6 +8,8 @@ body {
     cursor: url(../img/tiny_hammer.png) 15 15, auto;
 }
 
+.bonk { cursor: url(../img/tiny_hammer_bonk.png) 15 15, auto;}
+
 .navbar {
     background-color: #e4e4e4;
     border: 4px solid black;
@@ -21,6 +23,7 @@ body {
 
 h1 {
     font-size: 20px;
+    margin: 0 10px;
 }
 
 .navbar ul {
@@ -29,9 +32,7 @@ h1 {
     list-style: none;
 }
 
-.navbar li {
-    padding: 0 20px;
-}
+.navbar li { padding: 0 20px; }
 
 .startgame {
     display: flex;
@@ -135,3 +136,5 @@ h1 {
 .show {
     display: block!important;
 }
+
+/*RESPONSIVE*/
