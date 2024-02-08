@@ -87,15 +87,13 @@ h1 {
     margin: 0 auto;
     width: 800px;
     height: auto;
-    padding: 40px;
+    padding: 60px 10px;
 }
 
 .hole {
     width: 30%;
     height: 187px;
-    background-color: #b4ac73;
-    border-radius: 100%;
-    overflow: hidden;
+    background-image: url(../img/hole_1.png);
 }
 
 .taupiqueur {
@@ -103,7 +101,7 @@ h1 {
     display: none;
 }
 
-.textbox {
+.textbox, .leaderboard {
     width: 600px;
     background-color: #e4e4e4;
     border: 4px solid black;
@@ -116,6 +114,11 @@ h1 {
     line-height: 2;
 }
 
-.textbox p {
-    margin: 40px 20px;
+.leaderboard img {margin-bottom: -48px;}
+.leaderboard p {margin-bottom: 48px;}
+
+.textbox p {margin: 40px 20px;}
+
+.show {
+    display: block!important;
 }

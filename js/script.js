@@ -13,6 +13,8 @@ const currentScore = {
 const boiteTexte = document.getElementsByClassName("textbox")[0]
 const boiteStart = document.getElementsByClassName("startgame")[0]
 const boiteLevel = document.getElementsByClassName("level")[0]
+const boiteBoard = document.getElementsByClassName("leaderboard")[0]
+boiteBoard.style.display="none"
 
 function startgame(){
     const name = document.getElementById("playername").value
@@ -62,15 +64,39 @@ function game() {
     if (time == 0) {
         scoreCurrent()
     }
+
+    
 }
+
+
 
 function scoreCurrent() {
+    let players
+    console.log(localStorage.getItem('Player'));
+    if(localStorage.getItem('Players') === null) {
+        players = []
+        console.log('Viiiide');
+    } else {
+        players = JSON.parse(localStorage.getItem("Players"))
+        console.log(players);
+    }
+
     boiteTexte.style.display='block';
-    boiteTexte.innerHTML='<p>Bravo ' + currentScore.playername + ' ! <br> Ton score est de : ' + currentScore.score + '</p> <img src="img/taupiqueur_score.png" alt="Taupiqueur">'
-    localStorage.setItem("Nom du joueur", currentScore.playername)
-    localStorage.setItem("Score", currentScore.score)
-    let leaderBoardName = localStorage.getItem("Nom du joueur")
-    let leaderBoardScore = localStorage.getItem("Score")
-    console.log(leaderBoardName, leaderBoardScore);
+    boiteTexte.innerHTML='<p>Bravo ' + currentScore.playername + ' ! <br> Ton score est de : ' + currentScore.score + '</p> <img src="img/taupiqueur_score.png" alt="Taupiqueur">';
+    
+    players.push({"Nom":currentScore.playername,"Score":currentScore.score})
+    let leaderboardPlayer = JSON.stringify(players)
+    localStorage.setItem("Players", leaderboardPlayer)
 }
 
+function leaderboard() {
+    let players = JSON.parse(localStorage.getItem("Players"))
+    boiteBoard.classList.toggle('show')
+    boiteBoard.style.zindex="10";
+    boiteBoard.innerHTML='<p>Total des scores :</p>'
+    for (let i = 0; i < players.length; i++) {
+        const player = players[i];
+        boiteBoard.innerHTML+='<p>' + player.Nom + " : " + player.Score + '</p>'
+    }
+    boiteBoard.innerHTML+='<img src="img/taupiqueur_leaderboard.png" alt="Taupiqueur">'
+}
