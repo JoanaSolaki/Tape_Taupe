@@ -95,6 +95,7 @@ h1 {
     width: 30%;
     height: 187px;
     background-image: url(../img/hole_1.png);
+    background-repeat: no-repeat;
 }
 
 .taupiqueur {
@@ -113,10 +114,14 @@ h1 {
     transform: translate(-50%, -50%);
     text-align: center;
     line-height: 2;
+    max-height: 800px;
+    overflow: auto;
 }
 
-.leaderboard img {margin-bottom: -48px;}
-.leaderboard p {margin-bottom: 48px;}
+.leaderboard img {
+    position: relative;
+    bottom: -48px;
+}
 
 .textbox p {margin: 40px 20px;}
 
@@ -138,3 +143,15 @@ h1 {
 }
 
 /*RESPONSIVE*/
+@media (max-width:800px) {
+    body {height: auto;}
+    .navbar {flex-flow: row wrap;}
+    .champTaupiqueur {
+        width: 600px;
+        padding: 40px 0px;
+    }
+    .hole {
+        width: 40%;
+        height: 158px;
+    }
+}
