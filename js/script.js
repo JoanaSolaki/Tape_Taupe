@@ -64,13 +64,17 @@ function gameFacile() {
         time = time-1200
         }, 1200); // Cache après 1 seconde
         
-        document.getElementById('timer').innerText = time / 1000
+        document.getElementById('timer').innerText = time / 1000 + " sec"
     }
     else {
         taupiqueurs[random].style.display = 'none';
         document.getElementById('timer').style.display="none"
         scoreCurrent()
     }
+}
+
+function apparitionFacile(taupiqueurs) {
+    setInterval(taupiqueurs.style.display='block', 1200)
 }
 
 function gameMoyen() {
@@ -97,11 +101,11 @@ function gameMoyen() {
         setTimeout(() => {
             taupiqueurs[random].style.display = 'none';
             document.getElementsByTagName('body')[0].classList.remove('bonk')
-            setTimeout(gameMoyen, 1000); // Montre à nouveau après 1 seconde & Reboucle
+            setTimeout(gameMoyen, 1000);
             time = time-1000
-            }, 1000); // Cache après 1 seconde
+            }, 1000);
             
-            document.getElementById('timer').innerText = time / 1000
+            document.getElementById('timer').innerText = time / 1000 + " sec"
         }
         else {
             taupiqueurs[random].style.display = 'none';
@@ -134,11 +138,11 @@ function gameDifficile() {
         setTimeout(() => {
             taupiqueurs[random].style.display = 'none';
             document.getElementsByTagName('body')[0].classList.remove('bonk')
-            setTimeout(gameDifficile, 800); // Montre à nouveau après 1 seconde & Reboucle
+            setTimeout(gameDifficile, 800);
             time = time-800
-            }, 800); // Cache après 1 seconde
+            }, 800);
             
-            document.getElementById('timer').innerText = time / 1000
+            document.getElementById('timer').innerText = time / 1000 + " sec"
         }
         else {
             taupiqueurs[random].style.display = 'none';
