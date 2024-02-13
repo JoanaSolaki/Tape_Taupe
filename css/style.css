@@ -42,7 +42,6 @@ h1 {
     align-items: center;
     margin: 40px auto 0 auto;
     position: fixed;
-    padding: 40px;
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -54,6 +53,7 @@ h1 {
     font-family: 'Press Start 2P', system-ui;
     text-align: center;
 }
+
 .startgame button {
     padding: 20px;
     margin: 30px;
@@ -89,7 +89,7 @@ h1 {
     margin: 0 auto;
     width: 800px;
     height: auto;
-    padding: 100px 10px;
+    padding: 10% 10px 0 10px;
 }
 
 .hole {
@@ -150,14 +150,34 @@ audio {
 
 /*RESPONSIVE*/
 @media (max-width:800px) {
-    body {height: auto;}
     .navbar {flex-flow: row wrap;}
     .champTaupiqueur {
         width: 600px;
-        padding: 40px 0px;
+        padding: 30% 0 0 0;
     }
     .hole {
         width: 40%;
         height: 158px;
+        margin: 0 -20px;
+    }
+}
+
+@media (max-width:640px) {
+    .champTaupiqueur {
+        width: 500px;
+        margin-bottom: 50px;
+    }
+    .hole {
+        width: 47%;
+        height: 158px;
+        margin: -20px 0px;
+      }
+    .textbox, .leaderboard {
+        width: 400px;
+        padding: 10px;
+        top: 70%;
+    }
+    .startgame {
+        top: 25%;
     }
 }
