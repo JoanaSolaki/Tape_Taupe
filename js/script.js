@@ -20,7 +20,6 @@ function startgame(){
     const name = document.getElementById("playername").value
     currentScore.playername = name;
     if(name !== '') {
-        console.log(currentScore);
         boiteTexte.style.display="none"
         boiteStart.style.display="none"
         boiteLevel.style.display="flex"
@@ -48,12 +47,13 @@ function gameFacile() {
     let noCheat = false
     taupiqueurs[random].addEventListener("click", () => {
         document.getElementsByTagName('body')[0].classList.add('bonk')
+        clickSound.volume=0.5;
+        clickSound.play();
         if(!noCheat){
             currentScore.score++
             document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
             noCheat = true
         }
-        
     });
 
     if (time > 0) {
@@ -84,6 +84,8 @@ function gameMoyen() {
     let noCheat = false
     taupiqueurs[random].addEventListener("click", () => {
         document.getElementsByTagName('body')[0].classList.add('bonk')
+        clickSound.volume=0.5;
+        clickSound.play();
         if(!noCheat){
             currentScore.score++
             document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
@@ -119,6 +121,8 @@ function gameDifficile() {
     let noCheat = false
     taupiqueurs[random].addEventListener("click", () => {
         document.getElementsByTagName('body')[0].classList.add('bonk')
+        clickSound.volume=0.5;
+        clickSound.play();
         if(!noCheat){
             currentScore.score++
             document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
