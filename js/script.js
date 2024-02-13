@@ -156,6 +156,7 @@ function scoreCurrent() {
     }
 
     boiteTexte.style.display='block';
+    document.getElementsByClassName('reload')[0].style.display='block';
     boiteTexte.innerHTML='<p>Bravo ' + currentScore.playername + ' ! <br> Ton score est de : ' + currentScore.score + '</p> <img src="img/taupiqueur_score.png" alt="Taupiqueur">';
     
     players.push({"Nom":currentScore.playername,"Score":currentScore.score})
@@ -173,4 +174,8 @@ function leaderboard() {
         boiteBoard.innerHTML+='<p>' + player.Nom + " : " + player.Score + '</p>'
     }
     boiteBoard.innerHTML+='<img src="img/taupiqueur_leaderboard.png" alt="Taupiqueur">'
+}
+
+function reload() {
+    window.location.reload();
 }
