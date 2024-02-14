@@ -32,123 +32,150 @@ const holes = document.getElementsByClassName('hole')
 const taupiqueurs = document.getElementsByClassName('taupiqueur')
 
 document.getElementById('facile').addEventListener("click", gameFacile)
+document.getElementById('facile').addEventListener("click", timerDown)
 document.getElementById('moyen').addEventListener("click", gameMoyen)
+document.getElementById('moyen').addEventListener("click", timerDown)
 document.getElementById('difficile').addEventListener("click", gameDifficile)
+document.getElementById('difficile').addEventListener("click", timerDown)
 let time = 10000
 
-function gameFacile() {
-    boiteLevel.style.display="none"
-    document.getElementById('timer').style.display="block"
-    const random = Math.floor(Math.random() * 9)
+function timerDown () { 
+    const timerDown = setInterval(() => {
+        if (time > 0) {
+            time -= 1000;
+            document.getElementById('timer').innerText = time / 1000 + " sec";
+        } else {
+            document.getElementById('timer').style.display="none"
+            scoreCurrent()
+            clearInterval(timerDown);
+        }
+}, 1000);
+}
 
-    taupiqueurs[random];
+function gameFacile() {
+    boiteLevel.style.display = "none";
+    document.getElementById('timer').style.display = "block";
+    document.getElementById('timer').innerText = time / 1000 + " sec";
+
+    const random = Math.floor(Math.random() * 9);
+
     taupiqueurs[random].style.display = 'block';
+    console.log(random);
 
     let noCheat = false
     taupiqueurs[random].addEventListener("click", () => {
-        document.getElementsByTagName('body')[0].classList.add('bonk')
-        clickSound.volume=0.5;
-        clickSound.play();
         if(!noCheat){
             currentScore.score++
             document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
+            document.getElementsByTagName('body')[0].classList.add('bonk')
+            clickSound.volume=0.4;
+            clickSound.play();
             noCheat = true
         }
-    });
+    })
 
-    if (time > 0) {
-    setTimeout(() => {
-        taupiqueurs[random].style.display = 'none';
-        document.getElementsByTagName('body')[0].classList.remove('bonk')
-        setTimeout(gameFacile, 1200); // Montre à nouveau après 1 seconde & Reboucle
-        time = time-1200
-        }, 1200); // Cache après 1 seconde
-        
-        document.getElementById('timer').innerText = time / 1000 + " sec"
-    }
-    else {
-        taupiqueurs[random].style.display = 'none';
-        document.getElementById('timer').style.display="none"
-        scoreCurrent()
-    }
-}
+    // Interval pour l'apparition des taupes
+    const taupeInterval = setTimeout(() =>  {
+        if (time > 0) {
+            taupiqueurs[random].style.display = 'block';
+            document.getElementsByTagName('body')[0].classList.remove('bonk');
+            setTimeout(() => {
+                taupiqueurs[random].style.display = 'none';
+            }, 1100);
+            setTimeout(() => {
+                gameFacile()
+            }, 1200);
 
-function apparitionFacile(taupiqueurs) {
-    setInterval(taupiqueurs.style.display='block', 1200)
+        } else {
+            taupiqueurs[random].style.display = 'none';
+            document.getElementsByTagName('body')[0].classList.remove('bonk');
+            clearTimeout(taupeInterval);
+        }
+    }, 1200);
 }
 
 function gameMoyen() {
-    boiteLevel.style.display="none"
-    document.getElementById('timer').style.display="block"
-    const random = Math.floor(Math.random() * 9)
+    boiteLevel.style.display = "none";
+    document.getElementById('timer').style.display = "block";
+    document.getElementById('timer').innerText = time / 1000 + " sec";
 
-    taupiqueurs[random];
+    const random = Math.floor(Math.random() * 9);
+
     taupiqueurs[random].style.display = 'block';
+    console.log(random);
 
     let noCheat = false
     taupiqueurs[random].addEventListener("click", () => {
-        document.getElementsByTagName('body')[0].classList.add('bonk')
-        clickSound.volume=0.5;
-        clickSound.play();
         if(!noCheat){
             currentScore.score++
             document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
+            document.getElementsByTagName('body')[0].classList.add('bonk')
+            clickSound.volume=0.4;
+            clickSound.play();
             noCheat = true
         }
-    });
+    })
 
-    if (time > 0) {
-        setTimeout(() => {
+    // Interval pour l'apparition des taupes
+    const taupeInterval = setTimeout(() =>  {
+        if (time > 0) {
+            taupiqueurs[random].style.display = 'block';
+            document.getElementsByTagName('body')[0].classList.remove('bonk');
+            setTimeout(() => {
+                taupiqueurs[random].style.display = 'none';
+            }, 800);
+            setTimeout(() => {
+                gameMoyen()
+            }, 900);
+
+        } else {
             taupiqueurs[random].style.display = 'none';
-            document.getElementsByTagName('body')[0].classList.remove('bonk')
-            setTimeout(gameMoyen, 1000);
-            time = time-1000
-            }, 1000);
-            
-            document.getElementById('timer').innerText = time / 1000 + " sec"
+            document.getElementsByTagName('body')[0].classList.remove('bonk');
+            clearTimeout(taupeInterval);
         }
-        else {
-            taupiqueurs[random].style.display = 'none';
-            document.getElementById('timer').style.display="none"
-            scoreCurrent()
-        }
+    }, 900);
 }
 
 function gameDifficile() {
-    boiteLevel.style.display="none"
-    document.getElementById('timer').style.display="block"
-    const random = Math.floor(Math.random() * 9)
+    boiteLevel.style.display = "none";
+    document.getElementById('timer').style.display = "block";
+    document.getElementById('timer').innerText = time / 1000 + " sec";
 
-    taupiqueurs[random];
+    const random = Math.floor(Math.random() * 9);
+
     taupiqueurs[random].style.display = 'block';
+    console.log(random);
 
     let noCheat = false
     taupiqueurs[random].addEventListener("click", () => {
-        document.getElementsByTagName('body')[0].classList.add('bonk')
-        clickSound.volume=0.5;
-        clickSound.play();
         if(!noCheat){
             currentScore.score++
             document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
+            document.getElementsByTagName('body')[0].classList.add('bonk')
+            clickSound.volume=0.4;
+            clickSound.play();
             noCheat = true
         }
-    });
+    })
 
-    if (time > 0) {
-        setTimeout(() => {
+    // Interval pour l'apparition des taupes
+    const taupeInterval = setTimeout(() =>  {
+        if (time > 0) {
+            taupiqueurs[random].style.display = 'block';
+            document.getElementsByTagName('body')[0].classList.remove('bonk');
+            setTimeout(() => {
+                taupiqueurs[random].style.display = 'none';
+            }, 400);
+            setTimeout(() => {
+                gameDifficile()
+            }, 500);
+
+        } else {
             taupiqueurs[random].style.display = 'none';
-            document.getElementsByTagName('body')[0].classList.remove('bonk')
-            setTimeout(gameDifficile, 800);
-            time = time-800
-            }, 800);
-            
-            document.getElementById('timer').innerText = time / 1000 + " sec"
+            document.getElementsByTagName('body')[0].classList.remove('bonk');
+            clearTimeout(taupeInterval);
         }
-        else {
-            taupiqueurs[random].style.display = 'none';
-            document.getElementById('timer').style.display="none"
-            scoreCurrent()
-        }
+    }, 500);
 }
 
 function scoreCurrent() {
