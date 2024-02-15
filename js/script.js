@@ -37,6 +37,8 @@ document.getElementById('moyen').addEventListener("click", gameMoyen)
 document.getElementById('moyen').addEventListener("click", timerDown)
 document.getElementById('difficile').addEventListener("click", gameDifficile)
 document.getElementById('difficile').addEventListener("click", timerDown)
+document.getElementById('shiny').addEventListener("click", gameShiny)
+document.getElementById('shiny').addEventListener("click", timerDown)
 let time = 20000
 
 function timerDown () { 
@@ -78,7 +80,6 @@ function gameFacile() {
     const taupeInterval = setTimeout(() =>  {
         if (time > 0) {
             taupiqueurs[random].style.display = 'block';
-            //document.getElementsByTagName('body')[0].classList.remove('bonk');
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
             }, 1100);
@@ -115,12 +116,11 @@ function gameMoyen() {
             noCheat = true
         }
     })
-
+    document.getElementsByTagName('body')[0].classList.remove('bonk');
     // Interval pour l'apparition des taupes
     const taupeInterval = setTimeout(() =>  {
         if (time > 0) {
             taupiqueurs[random].style.display = 'block';
-            document.getElementsByTagName('body')[0].classList.remove('bonk');
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
             }, 600);
@@ -157,12 +157,11 @@ function gameDifficile() {
             noCheat = true
         }
     })
-
+    document.getElementsByTagName('body')[0].classList.remove('bonk');
     // Interval pour l'apparition des taupes
     const taupeInterval = setTimeout(() =>  {
         if (time > 0) {
             taupiqueurs[random].style.display = 'block';
-            document.getElementsByTagName('body')[0].classList.remove('bonk');
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
             }, 300);
@@ -176,6 +175,59 @@ function gameDifficile() {
             clearTimeout(taupeInterval);
         }
     }, 400);
+}
+
+let shiny = 0;
+function gameShiny() {
+    boiteLevel.style.display = "none";
+    document.getElementById('timer').style.display = "block";
+    document.getElementById('timer').innerText = time / 1000 + " sec";
+
+    const random = Math.floor(Math.random() * 9);
+    taupiqueurs[random].style.display = 'block';
+    taupiqueurs[random].id="selected"
+    let taupiqueurShiny = document.getElementById("selected")
+
+    const shinyInterval = setInterval(() => {
+        if (shiny < 3 && time > 0) {
+            taupiqueurShiny.classList.add('shiny')
+            shiny++;
+            console.log("Un shiny est apparu !", taupiqueurShiny);
+        } else {
+            clearInterval(shinyInterval);
+        }
+    }, 3000);
+
+    let noCheat = false
+    taupiqueurs[random].addEventListener("click", () => {
+        if(!noCheat){
+            currentScore.score++
+            document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
+            document.getElementsByTagName('body')[0].classList.add('bonk')
+            clickSound.volume=0.4;
+            clickSound.play();
+            noCheat = true
+        }
+    })
+    document.getElementsByTagName('body')[0].classList.remove('bonk');
+    // Interval pour l'apparition des taupes
+    const taupeInterval = setTimeout(() =>  {
+        if (time > 0) {
+            taupiqueurs[random].style.display = 'block';
+            setTimeout(() => {
+                taupiqueurs[random].style.display = 'none';
+                taupiqueurs[random].id=""
+                taupiqueurs[random].classList.remove('selected')
+            }, 600);
+            setTimeout(() => {
+                gameShiny()
+            }, 700);
+        } else {
+            taupiqueurs[random].style.display = 'none';
+            document.getElementsByTagName('body')[0].classList.remove('bonk');
+            clearTimeout(taupeInterval);
+        }
+    }, 700);
 }
 
 function scoreCurrent() {

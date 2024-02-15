@@ -165,6 +165,10 @@ audio {
     opacity: 0;
 }
 
+.shiny {
+    filter: hue-rotate(220deg);
+}
+
 /*RESPONSIVE*/
 @media (max-width:800px) {
     .navbar {flex-flow: row wrap;}
