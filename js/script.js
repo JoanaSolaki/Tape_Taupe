@@ -37,7 +37,7 @@ document.getElementById('moyen').addEventListener("click", gameMoyen)
 document.getElementById('moyen').addEventListener("click", timerDown)
 document.getElementById('difficile').addEventListener("click", gameDifficile)
 document.getElementById('difficile').addEventListener("click", timerDown)
-let time = 10000
+let time = 20000
 
 function timerDown () { 
     const timerDown = setInterval(() => {
@@ -73,12 +73,12 @@ function gameFacile() {
             noCheat = true
         }
     })
-
+    document.getElementsByTagName('body')[0].classList.remove('bonk')
     // Interval pour l'apparition des taupes
     const taupeInterval = setTimeout(() =>  {
         if (time > 0) {
             taupiqueurs[random].style.display = 'block';
-            document.getElementsByTagName('body')[0].classList.remove('bonk');
+            //document.getElementsByTagName('body')[0].classList.remove('bonk');
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
             }, 1100);
@@ -123,17 +123,17 @@ function gameMoyen() {
             document.getElementsByTagName('body')[0].classList.remove('bonk');
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
-            }, 800);
+            }, 600);
             setTimeout(() => {
                 gameMoyen()
-            }, 900);
+            }, 700);
 
         } else {
             taupiqueurs[random].style.display = 'none';
             document.getElementsByTagName('body')[0].classList.remove('bonk');
             clearTimeout(taupeInterval);
         }
-    }, 900);
+    }, 700);
 }
 
 function gameDifficile() {
@@ -165,17 +165,17 @@ function gameDifficile() {
             document.getElementsByTagName('body')[0].classList.remove('bonk');
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
-            }, 400);
+            }, 300);
             setTimeout(() => {
                 gameDifficile()
-            }, 500);
+            }, 400);
 
         } else {
             taupiqueurs[random].style.display = 'none';
             document.getElementsByTagName('body')[0].classList.remove('bonk');
             clearTimeout(taupeInterval);
         }
-    }, 500);
+    }, 400);
 }
 
 function scoreCurrent() {
