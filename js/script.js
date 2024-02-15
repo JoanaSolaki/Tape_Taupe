@@ -185,23 +185,21 @@ function gameShiny() {
 
     const random = Math.floor(Math.random() * 9);
     taupiqueurs[random].style.display = 'block';
-    taupiqueurs[random].id="selected"
-    let taupiqueurShiny = document.getElementById("selected")
-
-    const shinyInterval = setInterval(() => {
-        if (shiny < 3 && time > 0) {
-            taupiqueurShiny.classList.add('shiny')
-            shiny++;
-            console.log("Un shiny est apparu !", taupiqueurShiny);
-        } else {
-            clearInterval(shinyInterval);
-        }
-    }, 3000);
+    const isShiny = Math.random() < 0.2;
+    if (isShiny) {
+        taupiqueurs[random].style.display = 'block';
+        taupiqueurs[random].classList.add('shiny')
+    }
 
     let noCheat = false
     taupiqueurs[random].addEventListener("click", () => {
         if(!noCheat){
-            currentScore.score++
+            if (isShiny) {
+                currentScore.score+=10
+            }
+            else {
+                currentScore.score++
+            }
             document.getElementById('scoreActu').innerHTML='<li>Score : 00' + currentScore.score + '</li>'
             document.getElementsByTagName('body')[0].classList.add('bonk')
             clickSound.volume=0.4;
@@ -212,12 +210,11 @@ function gameShiny() {
     document.getElementsByTagName('body')[0].classList.remove('bonk');
     // Interval pour l'apparition des taupes
     const taupeInterval = setTimeout(() =>  {
-        if (time > 0) {
+        if (time > 0) {    
             taupiqueurs[random].style.display = 'block';
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
-                taupiqueurs[random].id=""
-                taupiqueurs[random].classList.remove('selected')
+                taupiqueurs[random].classList.remove('shiny')
             }, 600);
             setTimeout(() => {
                 gameShiny()
