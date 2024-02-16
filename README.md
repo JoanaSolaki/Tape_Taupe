@@ -7,3 +7,5 @@ Pensez à avoir du son activé pour une meilleure expérience !
 ## Lien
 
 Pour y jouer : https://joanasolaki.github.io/Tape_Taupiqueur/
+
+[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/file/kcnwwWcsnpkzmLyrFKMlll/Tape-taupe?type=design&node-id=0%3A1&mode=design&t=RFcMYkzJqmo003q6-1)
