@@ -164,17 +164,17 @@ function gameDifficile() {
             taupiqueurs[random].style.display = 'block';
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
-            }, 300);
+            }, 200);
             setTimeout(() => {
                 gameDifficile()
-            }, 400);
+            }, 300);
 
         } else {
             taupiqueurs[random].style.display = 'none';
             document.getElementsByTagName('body')[0].classList.remove('bonk');
             clearTimeout(taupeInterval);
         }
-    }, 400);
+    }, 300);
 }
 
 let shiny = 0;
@@ -215,16 +215,16 @@ function gameShiny() {
             setTimeout(() => {
                 taupiqueurs[random].style.display = 'none';
                 taupiqueurs[random].classList.remove('shiny')
-            }, 600);
+            }, 300);
             setTimeout(() => {
                 gameShiny()
-            }, 700);
+            }, 400);
         } else {
             taupiqueurs[random].style.display = 'none';
             document.getElementsByTagName('body')[0].classList.remove('bonk');
             clearTimeout(taupeInterval);
         }
-    }, 700);
+    }, 400);
 }
 
 function scoreCurrent() {
